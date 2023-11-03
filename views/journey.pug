@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{ destination: "Norway", cost: 3000 ,seasons:"Spring"},{ destination: "Paris", cost: 5000 , seasons:"fall" },{ destination: "Dubai", cost: 6000 , seasons:"summer"}]
+  div.container-fluid
+    div.row
+      each journey,index in results
+       div.col-sm-2(onclick=`buy(${index})`) #{journey.destination}
+       div.col-sm-2(onclick=`buy(${index})`) #{journey.cost}
+       div.col-sm-2(onclick=`buy(${index})`) #{journey.seasons}
+       hr
+  script. 
+    function buy(item)
+    {
+      alert(`You purchased item ${item+1}`)
+    }
