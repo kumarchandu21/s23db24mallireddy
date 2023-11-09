@@ -37,6 +37,7 @@ app.use('/resource', resourceRouter);
 
 const connectionString = process.env.MONGO_CON;
 const mongoose = require('mongoose');
+const { journey_list } = require('./controllers/journey');
 mongoose.connect(connectionString);
 
 //Get the default connection
@@ -51,6 +52,8 @@ console.log("Connection to DB succeeded")});
 async function recreateDB(){
 // Delete everything
 //await journey.deleteMany();
+
+
 await journey.deleteMany({}).maxTimeMS(30000); // Adjust the timeout value as needed
 
 let instance1 = new
@@ -61,6 +64,22 @@ console.log("First object saved")}
 console.error(err)
 });
 }
+
+let instance2 = new
+journey({destination:"Paris", seasons:'fall', cost:5000});
+instance2.save().then(doc=>{
+console.log("Second object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let instance3 = new
+journey({destination:"Dubai", seasons:'summer', cost:6000});
+instance3.save().then(doc=>{
+console.log("Third object saved")}
+).catch(err=>{
+console.error(err)
+});
 let reseed = true;
 if (reseed) {recreateDB();}
 

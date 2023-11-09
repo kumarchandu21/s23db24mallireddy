@@ -8,13 +8,13 @@ var journey_controller = require('../controllers/journey');
 router.get('/', api_controller.api);
 /// journey ROUTES ///
 // POST request for creating a journey.
-router.post('/journeys', journey_controller.journey_create_post);
+router.post('/journey', journey_controller.journey_create_post);
 // DELETE request to delete journey.
-router.delete('/journeys/:id', journey_controller.journey_delete);
+router.delete('/journey/:id', journey_controller.journey_delete);
 // PUT request to update journey.
-router.put('/journeys/:id', journey_controller.journey_update_put);
+router.put('/journey/:id', journey_controller.journey_update_put);
 // GET request for one journey.
-router.get('/journeys/:id', journey_controller.journey_detail);
+router.get('/journey/:id', journey_controller.journey_detail);
 // GET request for list of all journey items.
-router.get('/journeys', journey_controller.journey_list);
+router.get('/journey', journey_controller.journey_list);
 module.exports = router;

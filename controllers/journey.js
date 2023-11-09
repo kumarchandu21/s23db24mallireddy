@@ -19,3 +19,17 @@ res.send('NOT IMPLEMENTED: journey delete DELETE ' + req.params.id);
 exports.journey_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: journey update PUT' + req.params.id);
 };
+
+// List of all Costumes
+exports.journey_list = async function(req, res) {
+    try{
+    thejourney = await journey.find();
+    res.send(thejourney);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+ };
+
+    
