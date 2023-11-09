@@ -32,4 +32,36 @@ exports.journey_list = async function(req, res) {
     }
  };
 
+ // VIEWS
+// Handle a show all view
+exports.journey_view_all_Page = async function(req, res) {
+    try{
+    thejourney = await journey.find();
+    res.render('journey', { title: 'Journey Search Results', results: thejourney });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+};
+// Handle Costume create on POST.
+exports.journey_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new journey();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costume_type":"goat", "cost":12, "size":"large"}
+    document.destination = req.body.destination;
+    document.cost = req.body.cost;
+    document.seasons = req.body.seasons;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+};
     
