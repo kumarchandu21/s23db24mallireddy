@@ -64,4 +64,22 @@ exports.journey_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
 };
+// GET request for one costume.
+//router.get('/journey/:id', journey_controller.journey_detail);
+
+// for a specific Journey.
+exports.journey_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await journey.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+};
+
+
+
+    
     
