@@ -98,6 +98,31 @@ ${JSON.stringify(req.body)}`)
 failed`);
     }
 };
+// Handle Costume delete on DELETE.
+exports.journey_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await journey.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    // Handle a show one view with id specified by query
+exports.journey_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+result = await journey.findById( req.query.id)
+res.render('journeydetail',
+{ title: 'journey Detail', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
 
 
 

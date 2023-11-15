@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  - let journeyid = toShow._id
+  - let destination = toShow.destination
+  - let cost = toShow.cost
+  - let seasons = toShow.seasons
+
+  div
+    div.row
+      div(class='journeyAttr mr-3') Journey ID is:
+      div #{journeyid}
+    div.row
+      div(class='journeyAttr mr-3') Journey destination is:
+      div #{destination}
+    div.row
+      div(class='journeyAttr mr-3') Journey season is:
+      div #{seasons}
+    div.row
+      div(class='journeyAttr mr-3') Journey Cost is:
+      div #{cost}
