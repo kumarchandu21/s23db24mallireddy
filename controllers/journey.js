@@ -20,7 +20,7 @@ exports.journey_update_put = function (req, res) {
     res.send('NOT IMPLEMENTED: journey update PUT' + req.params.id);
 };
 
-// List of all Costumes
+// List of all journeys
 exports.journey_list = async function (req, res) {
     try {
         thejourney = await journey.find();
@@ -44,14 +44,14 @@ exports.journey_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
-// Handle Costume create on POST.
+// Handle journey create on POST.
 exports.journey_create_post = async function (req, res) {
     console.log(req.body)
     let document = new journey();
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"costume_type":"goat", "cost":12, "size":"large"}
+    // {"journey_type":"goat", "cost":12, "size":"large"}
     document.destination = req.body.destination;
     document.cost = req.body.cost;
     document.seasons = req.body.seasons;
@@ -64,7 +64,7 @@ exports.journey_create_post = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
-// GET request for one costume.
+// GET request for one journey.
 //router.get('/journey/:id', journey_controller.journey_detail);
 
 // for a specific Journey.
@@ -78,7 +78,7 @@ exports.journey_detail = async function (req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
-// Handle Costume update form on PUT.
+// Handle journey update form on PUT.
 exports.journey_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
@@ -98,7 +98,7 @@ ${JSON.stringify(req.body)}`)
 failed`);
     }
 };
-// Handle Costume delete on DELETE.
+// Handle journey delete on DELETE.
 exports.journey_delete = async function (req, res) {
     console.log("delete " + req.params.id)
     try {
@@ -123,7 +123,7 @@ exports.journey_view_one_Page = async function (req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
-// Handle building the view for creating a costume.
+// Handle building the view for creating a journey.
 // No body, no in path parameter, no query.
 // Does not need to be async
 exports.journey_create_Page = function (req, res) {
@@ -136,6 +136,19 @@ exports.journey_create_Page = function (req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+// Handle building the view for updating a journey.
+// query provides the id
+exports.journey_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await journey.findById(req.query.id)
+    res.render('journeyupdate', { title: 'journey Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
 
 

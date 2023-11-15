@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+  - let journeyid = toShow._id
+  - let destination = toShow.destination
+  - let cost = toShow.cost
+  - let seasons = toShow.seasons
+  
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{journeyid}
+
+  - let actionid = "/resource/journey/" + journeyid
+
+  form(id='journeyForm', action= actionid, method="POST") 
+    div.form-group
+      label.journeyAttr(for='destination') journey destination
+      input#destination(type='text', name='destination', value= destination )
+
+    div.form-group
+      label.journeyAttr(for='seasons') journey seasons
+      input#seasons(type='text', name='seasons', value= seasons )
+
+    div.form-group
+      label.journeyAttr(for='cost') journey cost
+      input#cost(type='number', name='cost', value= cost )
+
+    input(type="submit")
+
+  script.
+    document.forms['journeyForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT', // Change this to PUT if your server supports it; otherwise, use POST
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded");
+        // TODO handle the response body
+      }).catch((error) => {
+        // TODO handle the error
+        alert("Update failed: " + error);
+      });
+    });

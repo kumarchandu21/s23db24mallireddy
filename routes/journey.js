@@ -21,6 +21,10 @@ router.get('/create', journey_controlers.journey_create_Page);
 /* GET create costume page */
 //router.get('/create', journey_controlers.journey_create_post);
 
+/* GET create update page */
+router.get('/update', journey_controlers.journey_update_Page);
+
+
 
 module.exports = router;
 
