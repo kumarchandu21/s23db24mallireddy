@@ -15,6 +15,11 @@ var router = express.Router();
 router.get('/', journey_controlers.journey_view_all_Page );
 /* GET detail journey page */
 router.get('/detail', journey_controlers.journey_view_one_Page);
+/* GET create journey page */
+router.get('/create', journey_controlers.journey_create_Page);
+
+/* GET create costume page */
+//router.get('/create', journey_controlers.journey_create_post);
 
 
 module.exports = router;

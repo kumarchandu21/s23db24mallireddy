@@ -99,31 +99,43 @@ failed`);
     }
 };
 // Handle Costume delete on DELETE.
-exports.journey_delete = async function(req, res) {
+exports.journey_delete = async function (req, res) {
     console.log("delete " + req.params.id)
     try {
-    result = await journey.findByIdAndDelete( req.params.id)
-    console.log("Removed " + result)
-    res.send(result)
+        result = await journey.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
     } catch (err) {
-    res.status(500)
-    res.send(`{"error": Error deleting ${err}}`);
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
     }
-    };
-    // Handle a show one view with id specified by query
-exports.journey_view_one_Page = async function(req, res) {
-console.log("single view for id " + req.query.id)
-try{
-result = await journey.findById( req.query.id)
-res.render('journeydetail',
-{ title: 'journey Detail', toShow: result });
-}
-catch(err){
-res.status(500)
-res.send(`{'error': '${err}'}`);
-}
 };
-
+// Handle a show one view with id specified by query
+exports.journey_view_one_Page = async function (req, res) {
+    console.log("single view for id " + req.query.id)
+    try {
+        result = await journey.findById(req.query.id)
+        res.render('journeydetail',
+            { title: 'journey Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.journey_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('journeycreate', { title: 'journey Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
 
 
 

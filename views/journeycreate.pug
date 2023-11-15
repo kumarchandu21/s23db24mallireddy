@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1= title
+  form(id='journeyForm', action='/resource/journey', method='POST')
+    div.form-group
+      label.journeyAttr(for='destination') Journey destination
+      input#destination(type='text', name='destination')
+    div.form-group
+      label.journeyAttr(for='seasons') Journey seasons
+      input#seasons(type='text', name='seasons')
+    div.form-group
+      label.journeyAttr(for='cost') Journey cost
+      input#cost(type='number', name='cost')
+    input(type='submit')
+  script.
+    document.forms['journeyForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO: do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)), // event.target is the form
+      })
+        .then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        })
+        .then((body) => {
+          alert('Save succeeded');
+          // TODO: handle the response body
+        })
+        .catch((error) => {
+          // TODO: handle the error
+          alert('Save failed ' + error);
+        });
+    });
+
