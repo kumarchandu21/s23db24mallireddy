@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let journey = toShow._id
+    - let destination = toShow.destination
+    - let cost = toShow.cost
+    - let seasons = toShow.seasons
+    - let actionid = "/resource/journey/" + journey
+    script.
+      let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='journeyAttr mr-3') Journey ID is:
+          div #{journey}
+      div.row
+        div(class='journeyAttr mr-3') Destination is:
+          div #{destination}
+      div.row
+        div(class='journeyAttr mr-3') Season is:
+          div #{seasons}
+      div.row
+        div(class='journeyAttr mr-3') Cost is:
+          div #{cost}
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+      function cancel() {
+        // Go back to the home page for the journey collection
+        window.location.href='/journey'
+      }
+      function deleteOnid() {
+        console.log("starting delete");
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded");
+          window.location.href='/journey';
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error);
+        });
+      }

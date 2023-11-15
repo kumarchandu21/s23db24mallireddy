@@ -24,6 +24,10 @@ router.get('/create', journey_controlers.journey_create_Page);
 /* GET create update page */
 router.get('/update', journey_controlers.journey_update_Page);
 
+/* GET delete journey page */
+router.get('/delete', journey_controlers.journey_delete_Page);
+
+
 
 
 module.exports = router;

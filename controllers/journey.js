@@ -138,17 +138,32 @@ exports.journey_create_Page = function (req, res) {
 };
 // Handle building the view for updating a journey.
 // query provides the id
-exports.journey_update_Page = async function(req, res) {
-    console.log("update view for item "+req.query.id)
-    try{
-    let result = await journey.findById(req.query.id)
-    res.render('journeyupdate', { title: 'journey Update', toShow: result });
+exports.journey_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await journey.findById(req.query.id)
+        res.render('journeyupdate', { title: 'journey Update', toShow: result });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
-    };
+};
+// Handle a delete one view with id from query
+exports.journey_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await journey.findById(req.query.id)
+        res.render('journeydelete', {
+            title: 'journey Delete', toShow:
+                result
+        });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
 
 
 
