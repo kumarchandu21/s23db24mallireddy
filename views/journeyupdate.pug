@@ -2,31 +2,34 @@ extends layout
 
 block content
   h1= title
-  - let journeyid = toShow._id
-  - let destination = toShow.destination
-  - let cost = toShow.cost
-  - let seasons = toShow.seasons
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{journeyid}
+  if (toShow == null)
+    h2 No instance to update
+  else
+    - let journeyid = toShow._id
+    - let destination = toShow.destination
+    - let cost = toShow.cost
+    - let seasons = toShow.seasons
+    
+    .container
+      div.row(class='mb-4')
+        div.col ID is:
+          div(class='font-weight-bold') #{journeyid}
 
-  - let actionid = "/resource/journey/" + journeyid
+    - let actionid = "/resource/journey/" + journeyid
 
-  form(id='journeyForm', action= actionid, method="POST") 
-    div.form-group
-      label.journeyAttr(for='destination') journey destination
-      input#destination(type='text', name='destination', value= destination )
+    form(id='journeyForm', action=actionid, method="POST") 
+      .form-group
+        label.journeyAttr(for='destination') journey destination
+        input#destination.form-control(type='text', name='destination', value=destination)
 
-    div.form-group
-      label.journeyAttr(for='seasons') journey seasons
-      input#seasons(type='text', name='seasons', value= seasons )
+      .form-group
+        label.journeyAttr(for='seasons') journey seasons
+        input#seasons.form-control(type='text', name='seasons', value=seasons)
 
-    div.form-group
-      label.journeyAttr(for='cost') journey cost
-      input#cost(type='number', name='cost', value= cost )
-
-    input(type="submit")
+      .form-group
+        label.journeyAttr(for='cost') journey cost
+        input#cost.form-control(type='number', name='cost', value=cost)
+        button.btn.btn-primary(type="submit") Update 
 
   script.
     document.forms['journeyForm'].addEventListener('submit', (event) => {

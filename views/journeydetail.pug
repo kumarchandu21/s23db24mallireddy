@@ -1,22 +1,83 @@
 extends layout
 
 block content
-  h1= title
-  - let journeyid = toShow._id
-  - let destination = toShow.destination
-  - let cost = toShow.cost
-  - let seasons = toShow.seasons
+  style.
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-  div
-    div.row
-      div(class='journeyAttr mr-3') Journey ID is:
-      div #{journeyid}
-    div.row
-      div(class='journeyAttr mr-3') Journey destination is:
-      div #{destination}
-    div.row
-      div(class='journeyAttr mr-3') Journey season is:
-      div #{seasons}
-    div.row
-      div(class='journeyAttr mr-3') Journey Cost is:
-      div #{cost}
+    h1 {
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .journeyAttr {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .row {
+      margin-bottom: 15px;
+    }
+
+    .mr-3 {
+      margin-right: 3px;
+    }
+
+    .back-btn {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .back-btn:hover {
+      background-color: #2980b9;
+    }
+
+  .container
+    h1= title
+    if (toShow == null)
+      h2 No instance to detail
+    else
+      - let journeyid = toShow._id
+      - let destination = toShow.destination
+      - let cost = toShow.cost
+      - let seasons = toShow.seasons
+
+      div
+        div.row
+          div(class='journeyAttr mr-3') Journey ID is:
+          div #{journeyid}
+        div.row
+          div(class='journeyAttr mr-3') Journey destination is:
+          div #{destination}
+        div.row
+          div(class='journeyAttr mr-3') Journey season is:
+          div #{seasons}
+        div.row
+          div(class='journeyAttr mr-3') Journey Cost is:
+          div #{cost}
+
+
+    
+
+  
+
+
+  
