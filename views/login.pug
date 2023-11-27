@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    h2= message
+    br
+    form(role='form', action="/login", method="post", style='max-width: 300px; margin: 0 auto;')
+      .form-group
+        input.form-control(type='text', name="username", placeholder='Enter Username', style='width: 100%; padding: 5px; margin-bottom: 10px;')
+      .form-group
+        input.form-control(type='password', name="password", placeholder='Password', style='width: 100%; padding: 5px; margin-bottom: 10px;')
+      button.btn.btn-default(type='submit', style='width: 100%; padding: 10px; background-color: #4CAF50; color: white;') Submit
+      a(href='/', style='display: block; margin-top: 10px;')
+        button.btn.btn-primary(type="button", style='width: 100%; padding: 10px; background-color: #f44336; color: white;') Cancel
