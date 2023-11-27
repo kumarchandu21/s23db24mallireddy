@@ -54,6 +54,9 @@ router.post('/register', function (req, res) {
       })
     })
 });
+router.post('/login', passport.authenticate('local'), function (req, res) {
+  res.redirect('/');
+});
 
 router.get('/login', function (req, res) {
   res.render('login', { title: 'Journey App Login', user: req.user });
@@ -70,8 +73,7 @@ router.get('/logout', function (req, res) {
 router.get('/ping', function (req, res) {
   res.status(200).send("pong!");
 });
-module.exports = router;
-router.get('/ping', function (req, res) {
-  res.status(200).send("pong!");
-});
+
+
+
 module.exports = router;
