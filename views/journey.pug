@@ -3,14 +3,18 @@ extends layout
 block content
   h1= title
   - let results = [{ destination: "Norway", cost: 3000 ,seasons:"Spring"},{ destination: "Paris", cost: 5000 , seasons:"fall" },{ destination: "Dubai", cost: 6000 , seasons:"summer"}]
+  a(class="btn btn-outline-info" href="/journey/create") Create
   div.container-fluid.mt-3
     div.row.mt-2 
       each journey,index in results
-       div.col-sm-2(onclick=`buy(${index})`) #{journey.destination}
-       div.col-sm-2(onclick=`buy(${index})`) #{journey.cost}
-       div.col-sm-2(onclick=`buy(${index})`) #{journey.seasons}
-       hr
-       button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/journey/update?id=${journey._id}\")`) Update
+       div.col-sm-4.mb-3(style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #f8f9fa; cursor: pointer;")
+          h3(style="color: #343a40;") #{journey.destination}
+          p(style="color: #495057;") Cost: $#{journey.cost}
+          p(style="color: #495057;") Season: #{journey.seasons}
+          hr(style="border-color: #dee2e6;")
+          button.btn.btn-outline-primary.ml-1(onclick=`dispatch("/journey/update?id=${journey._id}")`, style="margin-bottom: 5px;") Update the page
+          a.btn.btn-outline-danger(href=`/journey/delete?id=${journey._id}`, style="margin-bottom: 5px; margin-left: 5px;") Delete the instance
+          a.btn.btn-outline-success(href=`/journey/detail?id=${journey._id}`, style="margin-bottom: 5px; margin-left: 5px;") Details of the journey page
   script. 
     function buy(item)
     {

@@ -1,8 +1,6 @@
 const mongoose = require("mongoose")
 const journeySchema = mongoose.Schema({
-//destination: String,
-//seasons: String,
-//cost: Number
+
 destination: {
     type: String,
     required: true
