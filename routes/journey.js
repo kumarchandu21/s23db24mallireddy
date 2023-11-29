@@ -26,10 +26,11 @@ const secured = (req, res, next) => {
 }
 /* GET costumes */
 router.get('/', journey_controlers.journey_view_all_Page);
+router.get('/journey/:id',journey_controlers.journey_detail);
 /* GET detail journey page */
 router.get('/detail', journey_controlers.journey_view_one_Page);
 /* GET create journey page */
-router.get('/create', journey_controlers.journey_create_Page);
+router.get('/create',secured, journey_controlers.journey_create_Page);
 
 /* GET create costume page */
 //router.get('/create', journey_controlers.journey_create_post);
@@ -38,7 +39,7 @@ router.get('/create', journey_controlers.journey_create_Page);
 router.get('/update', secured, journey_controlers.journey_update_Page);
 
 /* GET delete journey page */
-router.get('/delete', journey_controlers.journey_delete_Page);
+router.get('/delete',secured, journey_controlers.journey_delete_Page);
 
 
 
