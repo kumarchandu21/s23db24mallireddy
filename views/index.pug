@@ -1,21 +1,4 @@
-<!--extends layout
-
-block content
-  h1 Mallireddy Kumar Chandu
-  p Welcome to #{title}
-  p Hi, I am Kumar Chandu.
-  button.btn.btn-info(type="button", onclick="gofaster()") Press Me
-  div#faster Increase the speed
-  a(href="/journey") View Journey Page
-  script.
-    var mph = 20;
-    var change = 1;
-    function gofaster() {
-      mph = change + mph;
-      change = change + 1;
-      document.getElementById("faster").innerText = 'MPH ' + mph + ' with change ' + change;
-    }-->
-    extends layout
+extends layout
 
 block content
   if (!user)
@@ -27,4 +10,3 @@ block content
     a(href="/journey") Take me to journeys
     br
     a(href="/logout") Logout
-
